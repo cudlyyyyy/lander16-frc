@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
             --dark-green: #0a2818;
             --medium-green: #134d32;
@@ -19,7 +20,6 @@
             --text-white: #ffffff;
             --text-gray: #a8c5b8;
             --error-red: #ff4466;
-            --shadow-color: rgba(0, 0, 0, 0.5);
         }
 
         body {
@@ -42,11 +42,11 @@
         .hero-section {
             text-align: center;
             padding: 20px 0 15px;
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -56,12 +56,6 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 15px;
-            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
-        }
-
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .app-icon {
@@ -83,35 +77,39 @@
         }
 
         .main-headline {
-            font-size: 2.5rem;
+            font-size: 2.35rem;
             font-weight: 900;
             line-height: 1;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             letter-spacing: -0.03em;
             color: var(--accent-bright);
-            animation: fadeIn 0.8s ease-out 0.4s backwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .bonus-pill {
+            display: inline-block;
+            background: rgba(0,255,170,0.12);
+            border: 1px solid rgba(0,255,170,0.35);
+            color: var(--accent-bright);
+            font-size: 1rem;
+            font-weight: 800;
+            padding: 10px 14px;
+            border-radius: 999px;
+            margin-bottom: 12px;
         }
 
         .subheadline {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             line-height: 1.5;
             color: var(--text-white);
             margin-bottom: 20px;
             font-weight: 400;
-            animation: fadeIn 0.8s ease-out 0.6s backwards;
         }
 
         .age-selection {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+            margin-bottom: 14px;
         }
 
         .age-btn {
@@ -123,7 +121,7 @@
             font-size: 1.05rem;
             font-weight: 900;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -137,8 +135,8 @@
         }
 
         .age-btn.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0,255,170,0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,255,170,0.45);
         }
 
         .age-btn.secondary {
@@ -149,7 +147,7 @@
 
         .age-btn.secondary:hover {
             background: rgba(255,255,255,0.12);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .btn-subtitle {
@@ -158,13 +156,24 @@
             opacity: 0.8;
         }
 
+        .mini-trust {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-gray);
+        }
+
+        .hidden {
+            display: none;
+        }
+
         .success-section {
-            animation: fadeInUp 0.8s ease-out;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .success-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .success-icon {
@@ -178,13 +187,6 @@
             margin: 0 auto 12px;
             font-size: 1.8rem;
             color: #000;
-            animation: successPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes successPop {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         .success-title {
@@ -194,23 +196,23 @@
         }
 
         .success-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             line-height: 1.5;
             color: var(--text-gray);
+            margin-bottom: 14px;
         }
 
         .earning-highlight {
             color: var(--accent-bright);
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 800;
         }
 
         .cta-button {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: var(--accent-bright);
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-family: 'Outfit', sans-serif;
             font-size: 1rem;
             font-weight: 900;
@@ -219,8 +221,8 @@
             text-transform: uppercase;
             letter-spacing: 0.03em;
             box-shadow: 0 8px 25px rgba(0,255,170,0.3);
-            transition: all 0.3s ease;
-            margin: 18px 0;
+            transition: all 0.25s ease;
+            margin: 14px 0 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -229,134 +231,69 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0,255,170,0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,255,170,0.45);
         }
 
-        .prequalified-text {
+        .cta-note {
             text-align: center;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.88rem;
+            line-height: 1.45;
             color: var(--text-gray);
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
-        .journey-section {
+        .quick-points {
             background: rgba(255,255,255,0.04);
             border-radius: 16px;
-            padding: 18px 14px 6px;
+            padding: 16px 14px;
             margin: 0 0 16px;
         }
 
-        .journey-title {
-            font-size: 0.75rem;
+        .quick-points-title {
+            font-size: 0.78rem;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--text-gray);
         }
 
-        .step-card {
-            padding: 14px 0;
-            margin-bottom: 0;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-            animation: slideInLeft 0.6s ease-out backwards;
-        }
-
-        .step-card:last-child {
-            border-bottom: none;
-        }
-
-        .step-card:nth-child(1) { animation-delay: 0.2s; }
-        .step-card:nth-child(2) { animation-delay: 0.35s; }
-        .step-card:nth-child(3) { animation-delay: 0.5s; }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background: var(--accent-bright);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 0.95rem;
-            font-weight: 900;
-            color: #000;
-        }
-
-        .step-content h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+        .quick-point {
+            font-size: 0.9rem;
             color: var(--text-white);
+            line-height: 1.45;
+            margin-bottom: 10px;
         }
 
-        .step-content p {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            line-height: 1.5;
+        .quick-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .quick-point strong {
+            color: var(--accent-bright);
         }
 
         .notice-card {
             background: rgba(10,10,10,0.6);
-            border: 2px solid rgba(255,68,102,0.6);
+            border: 1px solid rgba(255,68,102,0.45);
             border-radius: 14px;
             padding: 14px;
             margin: 0 0 12px;
-            position: relative;
-            animation: fadeIn 0.8s ease-out 0.8s backwards;
-        }
-
-        .notice-badge {
-            position: absolute;
-            top: -14px;
-            right: 12px;
-            background: var(--error-red);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 900;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .notice-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .notice-lock {
-            font-size: 1.2rem;
         }
 
         .notice-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: var(--text-white);
+            margin-bottom: 6px;
         }
 
         .notice-text {
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             line-height: 1.5;
             color: var(--text-gray);
-        }
-
-        .notice-text strong {
-            color: var(--accent-bright);
         }
 
         .trust-badge {
@@ -364,16 +301,11 @@
             font-size: 0.75rem;
             color: var(--text-gray);
             margin: 12px 0 15px;
-            animation: fadeIn 1s ease-out 1s backwards;
         }
 
         .trust-badge strong {
             color: var(--accent-bright);
             font-weight: 700;
-        }
-
-        .hidden {
-            display: none;
         }
     </style>
 </head>
@@ -388,18 +320,27 @@
                         <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png" alt="ScrollEarn">
                     </div>
                 </div>
+
                 <h1 class="main-headline">Get Paid to Scroll</h1>
-                <p class="subheadline">Join thousands earning every day by watching videos online and cashing out instantly.</p>
+
+                <div class="bonus-pill">🎁 $20 Bonus When You Download Today</div>
+
+                <p class="subheadline">
+                    Start with a free sign-up bonus, then unlock more rewards inside the app.
+                </p>
+
                 <div class="age-selection">
                     <button class="age-btn primary" onclick="track('Over 21')">
-                        <span>I'm over 21</span>
-                        <span class="btn-subtitle">Instant Payouts: PayPal, CashApp, Venmo, Crypto & Wire</span>
+                        <span>I’m over 21</span>
+                        <span class="btn-subtitle">Instant payouts available after signup</span>
                     </button>
                     <button class="age-btn secondary" onclick="track('Under 21')">
-                        <span>I'm under 21</span>
-                        <span class="btn-subtitle">Limited Payouts: Wire Transfer Only</span>
+                        <span>I’m under 21</span>
+                        <span class="btn-subtitle">Limited options available</span>
                     </button>
                 </div>
+
+                <div class="mini-trust">Trusted by thousands of users earning every day</div>
             </div>
         </div>
 
@@ -411,52 +352,39 @@
                             <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png" alt="ScrollEarn">
                         </div>
                     </div>
+
                     <div class="success-icon">✓</div>
-                    <h2 class="success-title">You're In!</h2>
-                    <p class="success-subtitle">Turn your screen time into cash. Earn up to <span class="earning-highlight">$2,000/week.</span></p>
+
+                    <h2 class="success-title">You’re In</h2>
+
+                    <p class="success-subtitle">
+                        You’re eligible for a <span class="earning-highlight">$20 bonus</span> — download now to claim it.
+                    </p>
+
+                    <a href="#" class="cta-button" onclick="handleDownloadClick(); return false;">
+                        <span>Download Now — Claim $20 Bonus</span>
+                    </a>
+
+                    <p class="cta-note">
+                        Download the app and create your account to activate your bonus.
+                    </p>
                 </div>
 
-                <p class="prequalified-text">Your account is pre-qualified for higher payouts.<br>Download the app to activate full access.</p>
-
-                <a href="#" class="cta-button" onclick="handleDownloadClick(); return false;">
-                    <span>Download Now</span>
-                </a>
-
-                <div class="journey-section">
-                    <h3 class="journey-title">Your Earning Journey</h3>
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Download the Freecash App & Create an Account</h3>
-                            <p>Available on iOS & Android — download and sign up in under 30 seconds</p>
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Complete Daily Offers</h3>
-                            <p>Watch Netflix, scroll social media, test apps & games, or take surveys!</p>
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Cash Out Your Earnings</h3>
-                            <p>Instant Payouts: PayPal, CashApp, Venmo, Crypto & Wire</p>
-                        </div>
-                    </div>
+                <div class="quick-points">
+                    <div class="quick-points-title">How It Works</div>
+                    <div class="quick-point"><strong>1.</strong> Download the Freecash app</div>
+                    <div class="quick-point"><strong>2.</strong> Create your account in under a minute</div>
+                    <div class="quick-point"><strong>3.</strong> Unlock your sign-up bonus and start earning</div>
                 </div>
 
                 <div class="notice-card">
-                    <div class="notice-badge">⚠️ Important</div>
-                    <div class="notice-header">
-                        <span class="notice-lock">🔒</span>
-                        <span class="notice-title">Activation Required</span>
+                    <div class="notice-title">Important</div>
+                    <div class="notice-text">
+                        Bonus availability may vary by account eligibility and offer completion requirements inside the app.
                     </div>
-                    <p class="notice-text">New users: Complete <strong>2 quick offers</strong> to unlock full access and start earning in minutes.</p>
                 </div>
 
-                <div class="trust-badge">Trusted by over <strong>500,000 users</strong> earning money daily</div>
+                <div class="trust-badge">Trusted by over <strong>500,000 users</strong> worldwide</div>
             </div>
         </div>
     </div>
@@ -603,7 +531,7 @@
 
         setTimeout(function () {
             window.location.href = getExternalLink(finalUrl);
-        }, 150);
+        }, 100);
     }
 
     function showSuccessPage() {
