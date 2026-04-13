@@ -1,549 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScrollEarn - Earn Online</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScrollEarn</title>
 
-        :root {
-            --dark-green: #0a2818;
-            --medium-green: #134d32;
-            --light-green: #1a6b47;
-            --accent-green: #00ff9d;
-            --accent-bright: #00ffaa;
-            --dark-bg: #071814;
-            --text-white: #ffffff;
-            --text-gray: #a8c5b8;
-            --error-red: #ff4466;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: radial-gradient(ellipse at top, #134d32 0%, #0a2818 50%, #071814 100%);
-            min-height: 100vh;
-            color: var(--text-white);
-            overflow-x: hidden;
-        }
+<style>
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #071814;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
 
-        .container {
-            max-width: 420px;
-            margin: 0 auto;
-            padding: 15px;
-            position: relative;
-        }
+.container {
+    max-width: 420px;
+    margin: auto;
+    padding: 20px;
+}
 
-        header { padding: 15px 0 5px; }
+.app-icon {
+    width: 60px;
+    border-radius: 12px;
+}
 
-        .hero-section {
-            text-align: center;
-            padding: 20px 0 15px;
-            animation: fadeInUp 0.7s ease-out;
-        }
+.main-headline {
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: #00ffaa;
+}
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.bonus {
+    font-weight: 800;
+    margin: 10px 0;
+    color: #00ffaa;
+}
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
+button {
+    width: 100%;
+    padding: 16px;
+    margin: 10px 0;
+    border-radius: 12px;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+}
 
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            overflow: hidden;
-        }
+.primary {
+    background: #00ffaa;
+    color: black;
+}
 
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.secondary {
+    background: #1c2f28;
+    color: white;
+}
 
-        .main-headline {
-            font-size: 2.35rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 10px;
-            letter-spacing: -0.03em;
-            color: var(--accent-bright);
-        }
+.cta {
+    background: #00ffaa;
+    color: black;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 900;
+    display: block;
+    text-decoration: none;
+    margin: 15px 0;
+}
 
-        .bonus-pill {
-            display: inline-block;
-            background: rgba(0,255,170,0.12);
-            border: 1px solid rgba(0,255,170,0.35);
-            color: var(--accent-bright);
-            font-size: 1rem;
-            font-weight: 800;
-            padding: 10px 14px;
-            border-radius: 999px;
-            margin-bottom: 12px;
-        }
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-        .subheadline {
-            font-size: 0.98rem;
-            line-height: 1.5;
-            color: var(--text-white);
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .age-selection {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 14px;
-        }
-
-        .age-btn {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 16px;
-            border: none;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 900;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .age-btn.primary {
-            background: var(--accent-bright);
-            color: #000;
-            box-shadow: 0 8px 25px rgba(0,255,170,0.3);
-        }
-
-        .age-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(0,255,170,0.45);
-        }
-
-        .age-btn.secondary {
-            background: rgba(255,255,255,0.08);
-            color: var(--text-white);
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .age-btn.secondary:hover {
-            background: rgba(255,255,255,0.12);
-            transform: translateY(-1px);
-        }
-
-        .btn-subtitle {
-            font-size: 0.72rem;
-            font-weight: 500;
-            opacity: 0.8;
-        }
-
-        .mini-trust {
-            margin-top: 8px;
-            text-align: center;
-            font-size: 0.78rem;
-            color: var(--text-gray);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .success-section {
-            animation: fadeInUp 0.7s ease-out;
-        }
-
-        .success-header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .success-icon {
-            width: 55px;
-            height: 55px;
-            background: var(--accent-bright);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 1.8rem;
-            color: #000;
-        }
-
-        .success-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 8px;
-        }
-
-        .success-subtitle {
-            font-size: 0.98rem;
-            line-height: 1.5;
-            color: var(--text-gray);
-            margin-bottom: 14px;
-        }
-
-        .earning-highlight {
-            color: var(--accent-bright);
-            font-weight: 800;
-        }
-
-        .cta-button {
-            width: 100%;
-            padding: 16px;
-            background: var(--accent-bright);
-            border: none;
-            border-radius: 14px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 900;
-            color: #000;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            box-shadow: 0 8px 25px rgba(0,255,170,0.3);
-            transition: all 0.25s ease;
-            margin: 14px 0 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(0,255,170,0.45);
-        }
-
-        .cta-note {
-            text-align: center;
-            font-size: 0.88rem;
-            line-height: 1.45;
-            color: var(--text-gray);
-            margin-bottom: 16px;
-        }
-
-        .quick-points {
-            background: rgba(255,255,255,0.04);
-            border-radius: 16px;
-            padding: 16px 14px;
-            margin: 0 0 16px;
-        }
-
-        .quick-points-title {
-            font-size: 0.78rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-gray);
-        }
-
-        .quick-point {
-            font-size: 0.9rem;
-            color: var(--text-white);
-            line-height: 1.45;
-            margin-bottom: 10px;
-        }
-
-        .quick-point:last-child {
-            margin-bottom: 0;
-        }
-
-        .quick-point strong {
-            color: var(--accent-bright);
-        }
-
-        .notice-card {
-            background: rgba(10,10,10,0.6);
-            border: 1px solid rgba(255,68,102,0.45);
-            border-radius: 14px;
-            padding: 14px;
-            margin: 0 0 12px;
-        }
-
-        .notice-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-white);
-            margin-bottom: 6px;
-        }
-
-        .notice-text {
-            font-size: 0.84rem;
-            line-height: 1.5;
-            color: var(--text-gray);
-        }
-
-        .trust-badge {
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            margin: 12px 0 15px;
-        }
-
-        .trust-badge strong {
-            color: var(--accent-bright);
-            font-weight: 700;
-        }
-    </style>
+.check {
+    font-size: 30px;
+    background: #00ffaa;
+    color: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <header></header>
 
-        <div id="landingPage">
-            <div class="hero-section">
-                <div class="logo-container">
-                    <div class="app-icon">
-                        <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png" alt="ScrollEarn">
-                    </div>
-                </div>
+<div class="container">
 
-                <h1 class="main-headline">Get Paid to Scroll</h1>
+<!-- PAGE 1 -->
+<div id="landingPage">
 
-                <div class="bonus-pill">🎁 $20 Bonus When You Download Today</div>
+<img class="app-icon" src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png">
 
-                <p class="subheadline">
-                    Start with a free sign-up bonus, then unlock more rewards inside the app.
-                </p>
+<h1 class="main-headline">Get Paid to Scroll</h1>
 
-                <div class="age-selection">
-                    <button class="age-btn primary" onclick="track('Over 21')">
-                        <span>I’m over 21</span>
-                        <span class="btn-subtitle">Instant payouts available after signup</span>
-                    </button>
-                    <button class="age-btn secondary" onclick="track('Under 21')">
-                        <span>I’m under 21</span>
-                        <span class="btn-subtitle">Limited options available</span>
-                    </button>
-                </div>
+<div class="bonus">🎁 $20 Bonus When You Download Today</div>
 
-                <div class="mini-trust">Trusted by thousands of users earning every day</div>
-            </div>
-        </div>
+<p>Start with a free bonus, then unlock more rewards inside the app.</p>
 
-        <div id="successPage" class="hidden">
-            <div class="success-section">
-                <div class="success-header">
-                    <div class="logo-container">
-                        <div class="app-icon">
-                            <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png" alt="ScrollEarn">
-                        </div>
-                    </div>
+<button class="primary" onclick="track('Over 21')">I’m over 21</button>
+<button class="secondary" onclick="track('Under 21')">I’m under 21</button>
 
-                    <div class="success-icon">✓</div>
+</div>
 
-                    <h2 class="success-title">You’re In</h2>
+<!-- PAGE 2 -->
+<div id="successPage" style="display:none">
 
-                    <p class="success-subtitle">
-                        You’re eligible for a <span class="earning-highlight">$20 bonus</span> — download now to claim it.
-                    </p>
+<div class="row">
+<img class="app-icon" src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6106a7e4f66385001d52966b/0x0.png">
+<div class="check">✓</div>
+</div>
 
-                    <a href="#" class="cta-button" onclick="handleDownloadClick(); return false;">
-                        <span>Download Now — Claim $20 Bonus</span>
-                    </a>
+<h2>You’re In</h2>
 
-                    <p class="cta-note">
-                        Download the app and create your account to activate your bonus.
-                    </p>
-                </div>
+<p>You’re eligible for a <b>$20 bonus</b> — download now to claim it.</p>
 
-                <div class="quick-points">
-                    <div class="quick-points-title">How It Works</div>
-                    <div class="quick-point"><strong>1.</strong> Download the Freecash app</div>
-                    <div class="quick-point"><strong>2.</strong> Create your account in under a minute</div>
-                    <div class="quick-point"><strong>3.</strong> Unlock your sign-up bonus and start earning</div>
-                </div>
+<a href="#" class="cta" onclick="handleDownloadClick()">Download Now — Claim $20 Bonus</a>
 
-                <div class="notice-card">
-                    <div class="notice-title">Important</div>
-                    <div class="notice-text">
-                        Bonus availability may vary by account eligibility and offer completion requirements inside the app.
-                    </div>
-                </div>
+<!-- KEEPING YOUR JOURNEY EXACT -->
+<div>
+<h3>Your Earning Journey</h3>
+<p>1. Download the Freecash App & Create an Account</p>
+<p>2. Complete Daily Offers</p>
+<p>3. Cash Out Your Earnings</p>
+</div>
 
-                <div class="trust-badge">Trusted by over <strong>500,000 users</strong> worldwide</div>
-            </div>
-        </div>
-    </div>
+<!-- IMPORTANT MESSAGE UNCHANGED -->
+<div>
+<h3>⚠️ Important</h3>
+<p>New users: Complete <strong>2 quick offers</strong> to unlock full access and start earning in minutes.</p>
+</div>
+
+</div>
+
+</div>
 
 <script>
-    const DEFAULT_CAMPAIGN_ID = 'USAvidT16';
-    const LANGUAGE = 'English';
-    const BASE_AFFILIATE_LINK = 'https://raintrcks.com/r/eyJ0IjoiZnJlZWNhc2gtY3BpIiwidSI6IjY5YTEwOTZkYTA5OGFmODc1MWVkNzIyNiIsInRzIjoxNzc1OTE2NTQxMzEwLCJzIjoibmQtZnJlZWNhc2gtY3BpLXVzLWFuZHJvaWQifQ';
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwEOhmxwRliyxHarP4qKC2UzzxvFb7lxZ1dE2G-arazQ1FRByRbO6JZK6P8AvuWWNZ1kg/exec';
 
-    function getUrlParameter(name) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(name);
-    }
+const BASE = "https://raintrcks.com/r/eyJ0IjoiZnJlZWNhc2gtY3BpIiwidSI6IjY5YTEwOTZkYTA5OGFmODc1MWVkNzIyNiIsInRzIjoxNzc1OTE2NTQxMzEwLCJzIjoibmQtZnJlZWNhc2gtY3BpLXVzLWFuZHJvaWQifQ";
 
-    function getCampaignId() {
-        return (
-            getUrlParameter('sub2') ||
-            getUrlParameter('s2') ||
-            getUrlParameter('mc_campaign_id') ||
-            DEFAULT_CAMPAIGN_ID
-        );
-    }
+function getParam(name){
+    return new URLSearchParams(window.location.search).get(name);
+}
 
-    function parseMcAttr() {
-        const raw = getUrlParameter('mc_attr');
-        if (!raw) return {};
+function getClickID(){
+    const raw = decodeURIComponent(getParam("mc_attr")||"");
+    const match = raw.match(/m=([^\.]+)/);
+    return match ? match[1] : "";
+}
 
-        try {
-            const decoded = decodeURIComponent(raw);
-            const result = {};
+function track(){
+    document.getElementById("landingPage").style.display="none";
+    document.getElementById("successPage").style.display="block";
+}
 
-            decoded.split('..').forEach(part => {
-                const eqIndex = part.indexOf('=');
-                if (eqIndex > -1) {
-                    const key = part.slice(0, eqIndex).trim();
-                    const value = part.slice(eqIndex + 1).trim();
-                    result[key] = value;
-                }
-            });
+function handleDownloadClick(){
+    let url = new URL(BASE);
+    let click = getClickID();
+    let ttclid = getParam("ttclid");
 
-            return result;
-        } catch (err) {
-            return {};
-        }
-    }
+    if(click) url.searchParams.set("adv1", click);
+    if(ttclid) url.searchParams.set("ttclid", ttclid);
 
-    function getMaxConvClickId() {
-        const mcAttr = parseMcAttr();
+    window.location.href = url.toString();
+}
 
-        return (
-            getUrlParameter('mc_click_id') ||
-            getUrlParameter('clid') ||
-            mcAttr.m ||
-            ''
-        );
-    }
-
-    function getTikTokClickId() {
-        const mcAttr = parseMcAttr();
-
-        return (
-            getUrlParameter('ttclid') ||
-            mcAttr.e ||
-            ''
-        );
-    }
-
-    function isTikTokBrowser() {
-        return /musical_ly|tiktok/i.test(navigator.userAgent);
-    }
-
-    function isAndroid() {
-        return /android/i.test(navigator.userAgent);
-    }
-
-    function getExternalLink(url) {
-        if (isTikTokBrowser()) {
-            if (isAndroid()) {
-                return 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;end';
-            } else {
-                return 'x-safari-' + url;
-            }
-        }
-        return url;
-    }
-
-    function logEvent(payload) {
-        const body = {
-            timestamp: new Date().toISOString(),
-            campaign: getCampaignId(),
-            language: LANGUAGE,
-            mc_click_id: getMaxConvClickId(),
-            ttclid: getTikTokClickId(),
-            selection: payload.selection || payload.type || '',
-            ...payload
-        };
-
-        fetch(SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        }).catch(() => {});
-    }
-
-    function track(selection) {
-        logEvent({
-            type: 'selection',
-            selection: selection
-        });
-
-        showSuccessPage();
-    }
-
-    function buildAffiliateUrl() {
-        const campaignId = getCampaignId();
-        const mcClickId = getMaxConvClickId();
-        const ttclid = getTikTokClickId();
-        const url = new URL(BASE_AFFILIATE_LINK);
-
-        url.searchParams.set('s2', campaignId);
-        url.searchParams.set('sub2', campaignId);
-
-        if (mcClickId) {
-            url.searchParams.set('adv1', mcClickId);
-        }
-
-        if (ttclid && !ttclid.startsWith('__')) {
-            url.searchParams.set('ttclid', ttclid);
-        }
-
-        return url.toString();
-    }
-
-    function handleDownloadClick() {
-        const finalUrl = buildAffiliateUrl();
-
-        logEvent({
-            type: 'click',
-            selection: 'Button Click',
-            outbound_url: finalUrl
-        });
-
-        setTimeout(function () {
-            window.location.href = getExternalLink(finalUrl);
-        }, 100);
-    }
-
-    function showSuccessPage() {
-        document.getElementById('landingPage').classList.add('hidden');
-        document.getElementById('successPage').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    console.log('Campaign ID:', getCampaignId());
-    console.log('MaxConv Click ID:', getMaxConvClickId());
-    console.log('TikTok Click ID:', getTikTokClickId());
-    console.log('Decoded mc_attr:', parseMcAttr());
 </script>
+
 </body>
 </html>
